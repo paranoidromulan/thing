@@ -1,0 +1,22 @@
+# Build folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Visual Studio folder
+.vs/
+*.vscode/
+
+# Logs
+*.log
+
+# Mac/Unix
+.DS_Store
+
+# Executables and DLLs
+*.exe
+*.dll
+*.pdb
