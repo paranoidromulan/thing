@@ -107,6 +107,7 @@
 
         static void PrintByGenre()
         {
+            // Feature: show books by genre implemented
             Console.WriteLine("Which genre would like to search by?");
             string genre = Console.ReadLine();
 
