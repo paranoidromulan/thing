@@ -11,11 +11,11 @@
 
         public static void Main(string[] args)
         {
-            books.Add(new Book("The Hunger Games", "Suzanne Collins", Convert.ToInt32("2008"), "Drama"));
-            books.Add(new Book("Catching Fire", "Suzanne Collins", Convert.ToInt32("2009"), "Science Fiction"));
-            books.Add(new Book("Mockingjay", "Suzanne Collins", Convert.ToInt32("2010"), "Science Fiction"));
-            books.Add(new Book("The Da Vinci Code", "Dan Brown", Convert.ToInt32("2003"), "Mystery"));
-            books.Add(new Book("Dracula", "Bram Stoker", Convert.ToInt32("1897"), "Horror"));
+            books.Add(new Book("The Hunger Games", "Suzanne Collins", Convert.ToInt32("2008"), "Drama", false));
+            books.Add(new Book("Catching Fire", "Suzanne Collins", Convert.ToInt32("2009"), "Science Fiction", true));
+            books.Add(new Book("Mockingjay", "Suzanne Collins", Convert.ToInt32("2010"), "Science Fiction", true));
+            books.Add(new Book("The Da Vinci Code", "Dan Brown", Convert.ToInt32("2003"), "Mystery", false));
+            books.Add(new Book("Dracula", "Bram Stoker", Convert.ToInt32("1897"), "Horror", true));
 
 
             while (true)
@@ -27,6 +27,7 @@
                 Console.WriteLine("3 - Show all books");
                 Console.WriteLine("4 - Show books by genere");
                 Console.WriteLine("5 - Show books by author or title");
+                Console.WriteLine("6 - Check if the book is available or not");
 
                 string command = Console.ReadLine();
 
@@ -55,6 +56,10 @@
                 {
                     PrintByNameOrAuthor();
                 }
+                if (command == "6")
+                {
+                    TakenOrNot();
+                }
 
             }
         }
@@ -73,7 +78,9 @@
             Console.Write("Genere: ");
             string genere = Console.ReadLine();
 
-            books.Add(new Book(name, author, publicationDate, genere));
+            bool takenornot = false;
+
+            books.Add(new Book(name, author, publicationDate, genere, takenornot));
 
             Console.WriteLine("Book has been added!");
 
@@ -151,8 +158,33 @@
                 {
                     Console.WriteLine(b);
                 }
-            } 
+            }
 
+        }
+
+        static void TakenOrNot()
+        {
+            Console.WriteLine("Which book would you like to see if it is available? (Provide title only)");
+            string name = Console.ReadLine();
+
+            Book taken = books.Find(b => b.name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (taken != null)
+            {
+                if (taken.takenornot)
+                {
+                    Console.WriteLine("The book is not available.");
+
+                }
+
+                else
+                {
+                    Console.WriteLine("The book is available.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Book has not been found");
+            }
         }
     }
 }
